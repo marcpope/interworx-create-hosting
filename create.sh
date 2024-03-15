@@ -12,6 +12,7 @@
 # Define variables
 DOMAIN="$1"
 UNIQNAME="$2"
+SVRHOST=$(hostname)
 EMAIL="YOUR@EMAILADDRESS.COM"
 PASSWORD=$(< /dev/urandom tr -dc 'A-Za-z0-9' | head -c10)
 PACKAGE="Unlimited"
@@ -27,7 +28,7 @@ siteworx -u root --login_domain "$DOMAIN" -n -c MysqlDb --action add --name "db"
 
 echo "Domain: $DOMAIN"
 echo "-------------------------------------"
-echo "ftp host: nuvay.falcondns.com"
+echo "ftp host: $SERVERHOST"
 echo "ftp user: ftp@$DOMAIN"
 echo "ftp pass: $PASSWORD"
 echo ""
