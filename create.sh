@@ -59,9 +59,6 @@ usermod -a -G $UNIQNAME lasso
 echo "Restarting Lasso.."
 lasso8ctl restart
 
-echo "Patching Apache PrivateTmp=true problem..."
-curl -s https://raw.githubusercontent.com/marcpope/privatetmp_fix/main/fix.sh | /bin/bash
-
 echo "----"
 echo "done... make sure to add DB to lasso security"
 echo ""
