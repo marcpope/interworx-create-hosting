@@ -1,0 +1,22 @@
+## TEMPLATE .htaccess FILE FOR WEBSITE TO ADD CORS, DirectoryIndex and SSL Redirection
+## Designed for Lasso 8.6 based websites
+## by Marc Pope
+
+# REDIRECT TO SSL VERSION OF WHAT USER TYPES
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
+
+# SET DEFAULT HOME PAGE
+DirectoryIndex default.lasso index.lasso index.php index.html
+
+# SETTINGS TO HELP WITH PENETRATION SCAN
+<IfModule mod_headers.c>
+Header always set Content-Security-Policy "upgrade-insecure-requests;"
+#Header set X-XSS-Protection "1; mode=block"
+#Header always append X-Frame-Options SAMEORIGIN
+Header always set X-Frame-Options "ALLOWALL"
+Header set X-Content-Type-Options nosniff
+Header add Access-Control-Allow-Origin "*"
+Header add Access-Control-Allow-Methods "GET,POST,OPTIONS,DELETE,PUT"
+</IfModule>
